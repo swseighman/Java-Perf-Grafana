@@ -2,34 +2,16 @@
 
 > **NOTE:** The demo environment is already configured, the following instructions are informational.
 
-You'll need to add ports to the firewall configuration:
-
- ```
-$ sudo firewall-cmd --add-port=8080/tcp --permanent
-$ sudo firewall-cmd --add-port=9090/tcp --permanent
-$ sudo firewall-cmd --add-port=9100/tcp --permanent
-$ sudo firewall-cmd --add-port=3000/tcp --permanent
-$ sudo firewall-cmd --reload
-```
-
-Confirm the ports have been added:
+#### Install GraalVM (Node 2)
 
 ```
-$ sudo firewall-cmd --list-all
-public (active)
-   target: default
-   icmp-block-inversion: no
-   interfaces: ens3
-   sources:
-   services: dhcpv6-client ssh
-   ports: 8080/tcp 9090/tcp 9100/tcp 3000/tcp
-   protocols:
-   masquerade: no
-   forward-ports:
-   source-ports:
-   icmp-blocks:
-   rich rules:
+$ sudo yum provides graalvm21-ee-17*
+$ sudo yum install graalvm21-ee-17-jdk-21.3.0-1.el7.x86_64
+$ sudo yum install graalvm21-ee-17-native-image-21.3.0-1.el7.x86_64
 ```
+
+
+
 
 #### Install Docker 
 
@@ -82,10 +64,12 @@ $ sudo mv node_exporter /usr/local/bin
 $ sudo useradd -s /sbin/false node_exporter
 ```
 
+
 ```
 $ sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 ```
 
+Create a file called `/etc/systemd/system/node_exporter.service` and add the configuration below:
 ```
 [Unit]
 Description=Node Exporter
@@ -134,7 +118,7 @@ $ sudo chown -R prometheus:prometheus /opt/prometheus-2.31.0
 
 Next, we'll create a Prometheus service.
 
-Add the following to a file called `/etc/systemd/system/prometheus.service`:
+Create a file called `/etc/systemd/system/prometheus.service` and add the configuration below:
 ```
 [Unit]
 Description=Prometheus
@@ -260,6 +244,36 @@ Configure the Grafana server to start automatically:
 $ sudo systemctl enable grafana-server
 ```
 
+#### Firewall Configuration
+
+You'll need to add ports to the firewall configuration:
+
+ ```
+$ sudo firewall-cmd --add-port=8080/tcp --permanent
+$ sudo firewall-cmd --add-port=9090/tcp --permanent
+$ sudo firewall-cmd --add-port=9100/tcp --permanent
+$ sudo firewall-cmd --add-port=3000/tcp --permanent
+$ sudo firewall-cmd --reload
+```
+
+Confirm the ports have been added:
+
+```
+$ sudo firewall-cmd --list-all
+public (active)
+   target: default
+   icmp-block-inversion: no
+   interfaces: ens3
+   sources:
+   services: dhcpv6-client ssh
+   ports: 8080/tcp 9090/tcp 9100/tcp 3000/tcp
+   protocols:
+   masquerade: no
+   forward-ports:
+   source-ports:
+   icmp-blocks:
+   rich rules:
+```
 
 ### To Do ...
 

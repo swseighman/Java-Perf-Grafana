@@ -67,7 +67,7 @@ You can access the Prometheus dashboard by browsing to: http://132.145.18.207:90
 
 ![](images/dashboard-8.png)
 
-From here, you can execute queries and create graphs.  You can begin typing `node_memory` in the search bar and Prometheus will display the available query options. Enter your query and press the **Execute** button.  In the example below, we're displaying the amount of free memory on the node (`node_memory_MemFree_bytes`):
+From here, you can execute queries and create graphs.  For example, you can begin typing `node_memory` in the search bar and Prometheus will display the available query options. Enter your query and press the **Execute** button.  In the example below, we're displaying the amount of free memory on the node (`node_memory_MemFree_bytes`):
 
 ![](images/dashboard-11.png)
 

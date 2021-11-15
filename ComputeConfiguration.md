@@ -1,6 +1,26 @@
 ### Compute Instance Configuration (for new OCI instances)
 
+#### OCI Demo Instances
+
+There are two Oracle Linux 7.9 instances running in OCI, each with 2 CPUs (4 cores) and 32GB of RAM.  
+
+* `graal-demo-01: 132.145.18.207`
+* `graal-demo-02: 132.145.21.88`
+
 > **NOTE:** The demo environment is already configured, the following instructions are informational.
+
+To access the systems:
+```
+$ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@132.145.18.207
+```
+or
+
+```
+$ ssh -i ~username/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
+```
+
+> **NOTE:** You'll need to obtain the necessary key files to access the systems.
+
 
 #### Install SDKMAN
 
@@ -32,6 +52,8 @@ $ sdk default java 21.3.0-17-ee
 
 #### Install Docker 
 
+Docker will be used to support infrastructure services and for deploying demo applications.
+
 > **NOTE:** With Oracle Linux 7.9, begin by editing `/etc/yum.repos.d/oraclelinux-developer-ol7.repo` and change the block `[ol7_developer]` from `enabled=0` to `enabled=1`:
 > 
 > ```
@@ -53,6 +75,15 @@ $ sudo systemctl enable docker
 ```
 
 ### Adding Dashboard Components
+
+We'll need to install/configure the following components to support the demo environment:
+
+* cadvisor
+* Node-exporter
+* Prometheus
+* Grafana
+* Firewall Ports
+
 
 #### Install cadvisor Container
 

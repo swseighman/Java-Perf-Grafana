@@ -2,14 +2,31 @@
 
 > **NOTE:** The demo environment is already configured, the following instructions are informational.
 
-#### Install GraalVM (Node 2)
+#### Install SDKMAN
 
 ```
-$ sudo yum provides graalvm21-ee-17*
+$ curl -s "https://get.sdkman.io" | bash
+$ source "$HOME/.sdkman/bin/sdkman-init.sh"
+```
+
+#### Install GraalVM (on Node 2)
+
+Install the base and native image packages:
+
+```
+$ sudo yum provides graalvm21-ee-17-sdk*
 $ sudo yum install graalvm21-ee-17-jdk-21.3.0-1.el7.x86_64
 $ sudo yum install graalvm21-ee-17-native-image-21.3.0-1.el7.x86_64
 ```
 
+Using SDKMAN, add GraalVM 21.3.0:
+```
+$ sdk install java 21.3.0-17-ee /usr/lib64/graalvm/graalvm21-ee-java17/
+```
+Set GraalVM 21.3.0 as the default Java runtime:
+```
+$ sdk default java 21.3.0-17-ee
+```
 
 
 

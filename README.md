@@ -12,14 +12,14 @@ There are two Oracle Linux 7.9 instances running in OCI, each with 2 CPUs (4 cor
 
 One instance (`graal-demo-01`) is using the **Oracle JDK 17** runtime and the other instance (`graal-demo-02`) is using the **GraalVM EE 21.3.0 (JDK17)** runtime.
 
-To access the systems:
+To access the systems(assuming your keys are stored in `$HOME/.ssh`):
 ```
-$ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@132.145.18.207
+$ ssh -i $HOME/.ssh/ssh-key-graal-demo-1.key opc@132.145.18.207
 ```
 or
 
 ```
-$ ssh -i ~username/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
+$ ssh -i $HOME/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
 ```
 
 > **NOTE:** You'll need to obtain the necessary key files to access the systems.

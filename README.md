@@ -58,7 +58,7 @@ The `primes` demo produces data via `spring-actuator` (see source code) and is c
 In addition, `hey` has been installed so that you can run benchmark tests. For example:
 
 ```
-$ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes
+$ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes?upperBound=200
 ```
 
 ### Accessing the Prometheus Dashboard

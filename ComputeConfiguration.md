@@ -29,6 +29,17 @@ $ curl -s "https://get.sdkman.io" | bash
 $ source "$HOME/.sdkman/bin/sdkman-init.sh"
 ```
 
+#### Install Oracle JDK (on Node 1)
+
+Using SDKMAN, add Oracle JDK 17:
+```
+$ sdk install java 17.0.1-oracle
+```
+Set Oracle JDK 17 as the default Java runtime:
+```
+$ sdk default java 17.0.1-oracle
+```
+
 #### Install GraalVM (on Node 2)
 
 Install the base and native image packages:

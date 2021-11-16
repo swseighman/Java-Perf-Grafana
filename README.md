@@ -99,7 +99,7 @@ By default, the **Overall Dashboard** will be displayed which includes a collect
 
 * Prometheus
 * Node (system metrics)
-* Cadvisor (containers)
+* cAdvisor (containers)
 * Spring-actuator (demo app)
 
 ![](images/dashboard-1.png)

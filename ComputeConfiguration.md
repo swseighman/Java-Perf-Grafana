@@ -89,20 +89,25 @@ $ sudo systemctl enable docker
 
 We'll need to install/configure the following components to support the demo environment:
 
-* cadvisor
-* Node-exporter
+* cAdvisor
+* node-exporter
 * Prometheus
 * Grafana
 * Firewall Ports
 
 
-#### Install cadvisor Container
+#### Install cAdvisor Container
 
+cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers.
+
+Using Prometheus, we can scrape data from cAdvisor and display it via Grafana.
+
+We'll use a container image to deploy `cadvisor`:
 ```
 $ docker run -d -p 8081:8080 -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys:ro -v /var/lib/docker/:/var/lib/docker:ro --name=cadvisor google/cadvisor:latest
 ```
 
-Confirm the container is processing data: http://132.145.18.207:8081/containers/
+Confirm the container is processing data: http://132.145.18.207:8081/containers/ (or http://132.145.21.88:8081/containers on Node 2)
 
 #### Install node-exporter
 
@@ -115,15 +120,16 @@ $ wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node
 $ tar xvfz node_exporter-*.*-amd64.tar.gz
 $ cd node_exporter-*.*-amd64
 ```
+Move `node_exporter` to `/usr/local/bin`:
 ```
 $ sudo mv node_exporter /usr/local/bin
 ```
-
+Create a `node_exporter` user:
 ```
 $ sudo useradd -s /sbin/false node_exporter
 ```
 
-
+Change ownership of `node_exporter`:
 ```
 $ sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 ```
@@ -159,6 +165,8 @@ $ sudo systemctl enable node_exporter
 ```
 
 #### Installing Prometheus
+
+Prometheus is an open-source systems monitoring and alerting toolkit.  Prometheus collects and stores its metrics as time series data, i.e. metrics information is stored with the timestamp at which it was recorded.
 
 Download the [latest release](https://prometheus.io/download/) of Prometheus for your platform, then extract it (in this example, the file was extracted in `/opt`):
 
@@ -266,6 +274,8 @@ $ sudo systemctl enable prometheus
 ```
 
 #### Installing Grafana
+
+Grafana helps centralize the analysis, visualization, and alerting for all of your data.  With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards.
 
 Create the repo file (`/etc/yum.repos.d/grafana.repo`):
 

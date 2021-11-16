@@ -63,7 +63,7 @@ $ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes
 
 ### Accessing the Prometheus Dashboard
 
-You can access the Prometheus dashboard by browsing to: http://132.145.18.207:9090/
+You can access the Prometheus dashboard by browsing to: http://132.145.18.207:9090/ (Node 1) or http://132.145.21.88:9090/ (Node 2).
 
 ![](images/dashboard-8.png)
 

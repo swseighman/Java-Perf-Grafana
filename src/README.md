@@ -8,10 +8,10 @@ This is a standard Maven project, so just run `mvn clean install` and the projec
 
 You require the following to build the project:
 
-* [Oracle JDK 8](http://www.oracle.com/technetwork/java/)
+* [Oracle JDK 17](http://www.oracle.com/technetwork/java/)
 * [Apache Maven](http://maven.apache.org/)
 
-JDK 8 is required to build and run this project.
+JDK 17 is required to build and run this project.
 
 ## Running the Project
 

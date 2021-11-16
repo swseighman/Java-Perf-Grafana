@@ -134,7 +134,7 @@ Change ownership of `node_exporter`:
 $ sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 ```
 
-Create a file called `/etc/systemd/system/node_exporter.service` and add the configuration below:
+Create a file called `/etc/systemd/system/node_exporter.service` (see `files` directory) and add the configuration below:
 ```
 [Unit]
 Description=Node Exporter
@@ -178,6 +178,7 @@ $ tar xvfz prometheus-*.tar.gz
 $ cd /opt/prometheus-2.31.0
 ```
 
+Create the user `prometheus`:
 ```
 $ sudo useradd -s /sbin/false prometheus
 $ sudo chown -R prometheus:prometheus /opt/prometheus-2.31.0
@@ -185,7 +186,7 @@ $ sudo chown -R prometheus:prometheus /opt/prometheus-2.31.0
 
 Next, we'll create a Prometheus service.
 
-Create a file called `/etc/systemd/system/prometheus.service` and add the configuration below:
+Create a file called `/etc/systemd/system/prometheus.service` and add the configuration below (see `files` directory):
 ```
 [Unit]
 Description=Prometheus
@@ -206,7 +207,7 @@ ExecStart=/opt/prometheus-2.31.0/prometheus \
 WantedBy=multi-user.target
 ```
 
-A Prometheus configuration file (`prometheus.yml`) is required, here's an example of the configuration for this demo environment:
+A Prometheus configuration file (`prometheus.yml`) is required, here's an example of the configuration for this demo environment (see `files` directory):
 
 
 ```
@@ -277,7 +278,7 @@ $ sudo systemctl enable prometheus
 
 Grafana helps centralize the analysis, visualization, and alerting for all of your data.  With Grafana you can create, explore and share all of your data through beautiful, flexible dashboards.
 
-Create the repo file (`/etc/yum.repos.d/grafana.repo`):
+Create the repo file `/etc/yum.repos.d/grafana.repo` (see `files` directory):
 
 ```
 [grafana]

@@ -1,0 +1,17 @@
+
+FROM container-registry.oracle.com/os/oraclelinux:8.4
+
+RUN dnf -y install wget unzip zip findutils tar
+
+RUN \
+    # Install SDKMAN
+    curl -s "https://get.sdkman.io" | bash; \
+    source "$HOME/.sdkman/bin/sdkman-init.sh"; \
+    # Install OpenJDK
+    sdk install java 17.0.1-open;
+
+
+EXPOSE 8080
+
+COPY target/prime-0.0.1-SNAPSHOT.jar prime-0.0.1-SNAPSHOT.jar
+CMD ["/root/.sdkman/candidates/java/current/bin/java","-jar","prime-0.0.1-SNAPSHOT.jar"]

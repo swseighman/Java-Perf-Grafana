@@ -1,4 +1,4 @@
-### Compute Instance Configuration (for new OCI instances)
+# Compute Instance Configuration (for new OCI instances)
 
 #### OCI Demo Instances
 

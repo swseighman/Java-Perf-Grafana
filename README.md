@@ -37,9 +37,11 @@ $ java -jar target/prime-0.0.1-SNAPSHOT.jar
 
 #### Using Containers
 
+To start the `primes` demo container on Node 1, execute:
 ```
 $ docker run --rm --name primes-jdk -p 8080:8080 primes:jdk
 ```
+To start the `primes` demo container on Node 2, execute:
 ```
 $ docker run --rm --name primes-native -p 8080:8080 primes:native
 ```
@@ -66,8 +68,13 @@ The `primes` demo produces data via `spring-actuator` (see source code) and is c
 
 In addition, `hey` has been installed so that you can run benchmark tests. For example:
 
+Node 1:
 ```
 $ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes
+```
+Node 2:
+```
+$ hey -n 1000000 --cpus=1 http://132.145.21.88:8080/primes
 ```
 
 ### Accessing the Prometheus Dashboard

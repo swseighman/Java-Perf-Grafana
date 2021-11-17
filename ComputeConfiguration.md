@@ -345,7 +345,7 @@ public (active)
    interfaces: ens3
    sources:
    services: dhcpv6-client ssh
-   ports: 8080/tcp 9090/tcp 9100/tcp 3000/tcp
+   ports: 8080/tcp 8081/tcp 9090/tcp 9100/tcp 3000/tcp
    protocols:
    masquerade: no
    forward-ports:

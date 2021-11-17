@@ -73,6 +73,10 @@ To start the `primes` demo container on Node 2, execute:
 ```
 $ docker run --rm --name primes-native -p 8080:8080 primes:native
 ```
+For the Optimized JIT version on Node 2, execute:
+```
+$ docker run --rm --name primes-jit -p 8080:8080 primes:jit
+```
 
 The `primes` demo produces data via `spring-actuator` (see source code) and is consumed by Prometheus. The app runs on port **8080**. Once started, you should begin to see data in the Grafana dashboard.
 

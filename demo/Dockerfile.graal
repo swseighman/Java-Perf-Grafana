@@ -1,6 +1,0 @@
-FROM container-registry.oracle.com/graalvm/jdk-ee:java17-21.3.0
-
-EXPOSE 8080
-
-COPY target/prime-0.0.1-SNAPSHOT.jar prime-0.0.1-SNAPSHOT.jar
-CMD ["java","-jar","prime-0.0.1-SNAPSHOT.jar"]

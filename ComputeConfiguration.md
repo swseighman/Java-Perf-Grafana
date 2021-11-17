@@ -29,15 +29,15 @@ $ curl -s "https://get.sdkman.io" | bash
 $ source "$HOME/.sdkman/bin/sdkman-init.sh"
 ```
 
-#### Install Oracle JDK (on Node 1)
+#### Install OpenJDK (on Node 1)
 
-Using SDKMAN, add Oracle JDK 17:
+Using SDKMAN, add OpenJDK 17:
 ```
-$ sdk install java 17.0.1-oracle
+$ sdk install java 17.0.1-open
 ```
 Set Oracle JDK 17 as the default Java runtime:
 ```
-$ sdk default java 17.0.1-oracle
+$ sdk default java 17.0.1-open
 ```
 
 #### Install GraalVM (on Node 2)

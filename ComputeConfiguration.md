@@ -328,6 +328,7 @@ You'll need to add ports to the firewall configuration:
 
  ```
 $ sudo firewall-cmd --add-port=8080/tcp --permanent
+$ sudo firewall-cmd --add-port=8081/tcp --permanent
 $ sudo firewall-cmd --add-port=9090/tcp --permanent
 $ sudo firewall-cmd --add-port=9100/tcp --permanent
 $ sudo firewall-cmd --add-port=3000/tcp --permanent

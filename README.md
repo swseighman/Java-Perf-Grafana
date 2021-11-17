@@ -1,7 +1,7 @@
 
 # Java Performance Comparison Dashboard Demo
 
-#### OCI Demo Instances
+### OCI Demo Instances
 
 The goal of this demo is to compare performance of Java applications running in a virtual environment or deployed in containers.  
 
@@ -24,18 +24,46 @@ $ ssh -i ~username/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
 
 > **NOTE:** You'll need to obtain the necessary key files to access the systems.
 
-#### Starting the Demo App
+### Demo Apps
 
 A simple `primes` demo is provided (on both nodes) but other applications can be added.
 
+> **NOTE:** 
+> The `primes` demo has been compiled using Java 17.  Make certain you're using Java 17 (SDKMAN has been installed for your convenience). On **Node 1**, **OpenJDK 17** is installed, on **Node 2**, **GraalVM 21.3.0** (JDK 17) is installed.
+>```
+> $ sdk current
+>
+> Using:
+>
+> gradle: 7.2
+> java: 17.0.1-open  # <- On node 2: java: 21.3.0-17-ee
+> maven: 3.8.3
+> micronaut: 3.1.3
+>
+> $ java -version
+> openjdk version "17.0.1" 2021-10-19
+> OpenJDK Runtime Environment (build 17.0.1+12-39)
+> OpenJDK 64-Bit Server VM (build 17.0.1+12-39, mixed mode, sharing)
+>```
+
+#### Starting the Standalone Version
 To start the primes demo (on either host):
 
 ```
-$ cd demo/primes
+$ cd demo/primes-demo
+```
+
+Node 1:
+```
 $ java -jar target/prime-0.0.1-SNAPSHOT.jar
 ```
 
-#### Using Containers
+Node 2:
+```
+$ java -jar target/prime-0.0.1-SNAPSHOT-exec.jar
+```
+
+#### Starting the Container Version
 
 To start the `primes` demo container on Node 1, execute:
 ```
@@ -45,24 +73,6 @@ To start the `primes` demo container on Node 2, execute:
 ```
 $ docker run --rm --name primes-native -p 8080:8080 primes:native
 ```
-
-> **NOTE:** 
-> The `primes` demo has been compiled using Java 17.  Make certain you're using Java 17 (SDKMAN has been installed for your convenience). On **Node 1**, **Oracle JDK 17** is installed, on **Node 2**, **GraalVM 21.3.0** (JDK 17) is installed.
->```
-> $ sdk current
->
-> Using:
->
-> gradle: 7.2
-> java: 17.0.1-oracle  # <- On node 2: java: 21.3.0-17-ee
-> maven: 3.8.3
-> micronaut: 3.1.3
->
-> $ java -version
-> java version "17.0.1" 2021-10-19 LTS
-> Java(TM) SE Runtime Environment (build 17.0.1+12-LTS-39)
-> Java HotSpot(TM) 64-Bit Server VM (build 17.0.1+12-LTS-39, mixed mode, sharing)
->```
 
 The `primes` demo produces data via `spring-actuator` (see source code) and is consumed by Prometheus. The app runs on port **8080**. Once started, you should begin to see data in the Grafana dashboard.
 
@@ -77,6 +87,8 @@ Node 2:
 $ hey -n 1000000 --cpus=1 http://132.145.21.88:8080/primes
 ```
 
+ 
+ 
 ### Accessing the Prometheus Dashboard
 
 You can access the Prometheus dashboard by browsing to: http://132.145.18.207:9090/ (Node 1) or http://132.145.21.88:9090/ (Node 2).

@@ -84,11 +84,11 @@ In addition, `hey` has been installed so that you can run benchmark tests. For e
 
 Node 1:
 ```
-$ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes
+$ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes?upperBound=200
 ```
 Node 2:
 ```
-$ hey -n 1000000 --cpus=1 http://132.145.21.88:8080/primes
+$ hey -n 1000000 --cpus=1 http://132.145.21.88:8080/primes?upperBound=200
 ```
 
  

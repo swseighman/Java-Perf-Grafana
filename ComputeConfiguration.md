@@ -35,7 +35,7 @@ Using SDKMAN, add OpenJDK 17:
 ```
 $ sdk install java 17.0.1-open
 ```
-Set Oracle JDK 17 as the default Java runtime:
+Set OpenJDK 17 as the default Java runtime:
 ```
 $ sdk default java 17.0.1-open
 ```

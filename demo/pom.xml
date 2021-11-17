@@ -14,9 +14,10 @@
 	<name>primes-demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 		<repackage.classifier/>
 		<spring-native.version>0.11.0-SNAPSHOT</spring-native.version>
+		<native-buildtools.version>0.9.7.1</native-buildtools.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -32,7 +33,7 @@
         <dependency>
 			<groupId>org.graalvm.buildtools</groupId>
 			<artifactId>junit-platform-native</artifactId>
-			<version>0.9.5</version>
+			<version>${native-buildtools.version}</version>
 			<scope>test</scope>
 		</dependency>
         <dependency>
@@ -72,12 +73,12 @@
 				<artifactId>spring-aot-maven-plugin</artifactId>
 				<version>${spring-native.version}</version>
 				<executions>
-					<execution>
+					<!-- <execution>
 						<id>test-generate</id>
 						<goals>
 							<goal>test-generate</goal>
 						</goals>
-					</execution>
+					</execution> -->
 					<execution>
 						<id>generate</id>
 						<goals>
@@ -88,7 +89,7 @@
 			</plugin>
 		</plugins>
 	</build>
-        <repositories>
+<repositories>
     <repository>
         <id>spring-snapshots</id>
         <url>https://repo.spring.io/snapshot</url>
@@ -111,6 +112,17 @@
         <id>spring-milestones</id>
         <url>https://repo.spring.io/milestone</url>
     </pluginRepository>
+	<!-- <pluginRepository>
+        <id>graalvm-native-build-tools-snapshots</id>
+        <name>GraalVM native-build-tools Snapshots</name>
+        <url>https://raw.githubusercontent.com/graalvm/native-build-tools/snapshots</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </pluginRepository> -->
 </pluginRepositories>
 	<profiles>
 		<profile>

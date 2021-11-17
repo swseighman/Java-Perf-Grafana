@@ -1,7 +1,6 @@
+FROM container-registry.oracle.com/os/oraclelinux:7
 
-FROM container-registry.oracle.com/os/oraclelinux:8.4
-
-RUN dnf -y install wget unzip zip findutils tar
+RUN yum -y install wget unzip zip findutils tar
 
 RUN \
     # Install SDKMAN
@@ -9,7 +8,6 @@ RUN \
     source "$HOME/.sdkman/bin/sdkman-init.sh"; \
     # Install OpenJDK
     sdk install java 17.0.1-open;
-
 
 EXPOSE 8080
 

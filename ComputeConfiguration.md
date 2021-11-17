@@ -85,6 +85,14 @@ $ sudo systemctl start docker
 $ sudo systemctl enable docker
 ```
 
+> **NOTE:** Alternative for OL8 is `podman`:
+> ```
+> $ sudo dnf module install -y container-tools:ol8
+> $ sudo dnf install -y podman-docker
+> ```
+> You can continue to use `docker` commands.
+
+
 ### Adding Dashboard Components
 
 We'll need to install/configure the following components to support the demo environment:

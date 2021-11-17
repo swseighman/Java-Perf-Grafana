@@ -12,14 +12,14 @@ There are two Oracle Linux 7.9 instances running in OCI, each with 2 CPUs (4 cor
 
 One instance (`graal-demo-01`) is using the **Oracle JDK 17** runtime and the other instance (`graal-demo-02`) is using the **GraalVM EE 21.3.0 (JDK17)** runtime.
 
-To access the systems (assuming your keys are stored in `$HOME/.ssh`):
+To access the systems:
 ```
-$ ssh -i $HOME/.ssh/ssh-key-graal-demo-1.key opc@132.145.18.207
+$ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@132.145.18.207
 ```
 or
 
 ```
-$ ssh -i $HOME/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
+$ ssh -i ~username/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
 ```
 
 > **NOTE:** You'll need to obtain the necessary key files to access the systems.
@@ -33,6 +33,15 @@ To start the primes demo (on either host):
 ```
 $ cd demo/primes
 $ java -jar target/prime-0.0.1-SNAPSHOT.jar
+```
+
+#### Using Containers
+
+```
+$ docker run --rm --name primes-jdk -p 8080:8080 primes:jdk
+```
+```
+$ docker run --rm --name primes-native -p 8080:8080 primes:native
 ```
 
 > **NOTE:** 
@@ -58,7 +67,7 @@ The `primes` demo produces data via `spring-actuator` (see source code) and is c
 In addition, `hey` has been installed so that you can run benchmark tests. For example:
 
 ```
-$ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes?upperBound=200
+$ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes
 ```
 
 ### Accessing the Prometheus Dashboard
@@ -99,7 +108,7 @@ By default, the **Overall Dashboard** will be displayed which includes a collect
 
 * Prometheus
 * Node (system metrics)
-* cAdvisor (containers)
+* Cadvisor (containers)
 * Spring-actuator (demo app)
 
 ![](images/dashboard-1.png)

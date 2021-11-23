@@ -1,0 +1,22 @@
+version: '2.4'
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
+services:
+
+  # Apps
+  primes-native-inst:
+    image: localhost/primes:nativeinst.0.1
+    restart: always
+    mem_limit: 1024m
+    memswap_limit: 1024m
+    cpu_count: 2
+    cpu_percent: 100
+    cpus: 2
+    volumes:
+      - ./profiles:/profiles:rw
+    ports:
+      - "8089:8080"
+  

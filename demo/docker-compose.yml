@@ -64,7 +64,7 @@ services:
     cpu_percent: 100
     cpus: 2
     volumes:
-      - ./profiles:/profiles
+      - ./profiles:/profiles:rw
     depends_on:
       - "prom"
     ports:

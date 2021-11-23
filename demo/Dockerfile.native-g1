@@ -1,0 +1,6 @@
+FROM container-registry.oracle.com/os/oraclelinux:7-slim
+
+EXPOSE 8080
+
+COPY target/prime-g1 prime
+ENTRYPOINT ["/prime"]

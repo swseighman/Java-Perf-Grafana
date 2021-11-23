@@ -11,5 +11,5 @@ RUN \
 
 EXPOSE 8080
 
-COPY target/prime-0.0.1-SNAPSHOT.jar prime-0.0.1-SNAPSHOT.jar
+COPY target/prime-0.0.1-SNAPSHOT-exec.jar prime-0.0.1-SNAPSHOT.jar
 CMD ["/root/.sdkman/candidates/java/current/bin/java","-jar","prime-0.0.1-SNAPSHOT.jar"]

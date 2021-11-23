@@ -1,0 +1,8 @@
+FROM container-registry.oracle.com/os/oraclelinux:7-slim
+
+EXPOSE 8080
+
+RUN mkdir /profiles
+
+COPY target/prime-inst prime
+ENTRYPOINT ["/prime", " -XX:ProfilesDumpFile=/profiles/primes.iprof"]

@@ -1,4 +1,9 @@
 version: '2.4'
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
 services:
 
   # Apps
@@ -99,6 +104,11 @@ services:
   ## Grafana
   grafana:
     image: grafana/grafana
+    depends_on:
+      - prom
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - grafana_data:/var/lib/grafana
     ports:
       - "3000:3000"
   ## CAdvisor

@@ -1,0 +1,12 @@
+datasources:
+- name: Prometheus-1
+  access: direct
+  type: prometheus
+  url: http://localhost:9090
+  isDefault: true
+
+# - name: Prometheus-2
+#   access: direct
+#   type: prometheus
+#   url: http://132.145.21.88:9090
+#   isDefault: false

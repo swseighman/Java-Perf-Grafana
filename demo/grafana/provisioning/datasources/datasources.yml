@@ -1,5 +1,5 @@
 datasources:
-- name: Prometheus-1
+- name: Prometheus
   access: direct
   type: prometheus
   url: http://prom:9090

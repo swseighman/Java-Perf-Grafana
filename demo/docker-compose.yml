@@ -34,8 +34,8 @@ services:
   primes-native:
     image: localhost/primes:native.0.1
     restart: always
-    mem_limit: 1024m
-    memswap_limit: 1024m
+    mem_limit: 256m
+    memswap_limit: 256m
     cpu_count: 2
     cpu_percent: 100
     cpus: 2
@@ -46,8 +46,8 @@ services:
   primes-native-g1:
     image: localhost/primes:nativeg1.0.1
     restart: always
-    mem_limit: 1024m
-    memswap_limit: 1024m
+    mem_limit: 256m
+    memswap_limit: 256m
     cpu_count: 2
     cpu_percent: 100
     cpus: 2
@@ -65,11 +65,26 @@ services:
     cpus: 2
     volumes:
       - ./profiles:/profiles:rw
+    # Pass in the location of the profile dump directory as an extra command param
+    command:
+      - "-XX:ProfilesDumpFile=/profiles/primes.iprof"
     depends_on:
       - "prom"
     ports:
       - "8089:8080"
-  
+  primes-native-opt:
+    image: localhost/primes:nativeopt.0.1
+    restart: always
+    mem_limit: 256m
+    memswap_limit: 256m
+    cpu_count: 2
+    cpu_percent: 100
+    cpus: 2
+    depends_on:
+      - "prom"
+    ports:
+      - "8090:8080"
+
   # Reporting & Metrics
   ## Node Exporter
   node-exporter:

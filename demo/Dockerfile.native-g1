@@ -1,6 +1,7 @@
 FROM container-registry.oracle.com/os/oraclelinux:7-slim
 
+ARG APP_FILE
 EXPOSE 8080
 
-COPY target/prime-g1 prime
+COPY target/${APP_FILE} prime
 ENTRYPOINT ["/prime"]

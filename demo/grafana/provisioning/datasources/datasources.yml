@@ -2,7 +2,7 @@ datasources:
 - name: Prometheus-1
   access: direct
   type: prometheus
-  url: http://localhost:9090
+  url: http://prom:9090
   isDefault: true
 
 # - name: Prometheus-2

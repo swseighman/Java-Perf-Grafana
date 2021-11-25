@@ -204,11 +204,9 @@
 						<configuration>
 							<imageName>prime-g1</imageName>
 							<buildArgs>
-								<buildArg>--no-fallback</buildArg>
 								<!-- Add support for G1GC -->
 								<buildArg>--gc=G1</buildArg>
 								<buildArg>-H:+ReportExceptionStackTraces</buildArg>
-								<buildArg>--enable-all-security-services</buildArg>
 							</buildArgs>
 						</configuration>
 					</plugin>
@@ -255,11 +253,10 @@
 							<imageName>prime-inst</imageName>
 							<!--mainClass>ping.Application</mainClass-->
 							<buildArgs>
-								<buildArg>--no-fallback</buildArg>
 								<!-- Add support for G1GC -->
 								<buildArg>--gc=G1</buildArg>
 								<buildArg>-H:+ReportExceptionStackTraces</buildArg>
-								<buildArg>--enable-all-security-services</buildArg>
+								<!-- Instrument the application - adds reporting for profiling -->
 								<buildArg>--pgo-instrument</buildArg>
 							</buildArgs>
 						</configuration>

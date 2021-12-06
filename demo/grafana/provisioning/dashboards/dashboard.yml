@@ -1,11 +1,21 @@
 apiVersion: 1
 
 providers:
-- name: 'Prometheus'
+- name: 'Modernise'
   orgId: 1
   folder: ''
   type: file
   disableDeletion: false
   editable: true
+  allowUiUpdates: true
+  options:
+    path: /etc/grafana/provisioning/dashboards
+- name: 'Optimise'
+  orgId: 1
+  folder: ''
+  type: file
+  disableDeletion: false
+  editable: true
+  allowUiUpdates: true
   options:
     path: /etc/grafana/provisioning/dashboards

@@ -51,7 +51,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 12,
+        "w": 17,
         "x": 0,
         "y": 0
       },
@@ -73,11 +73,19 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "container_memory_rss{name=\"primes-native-g1\"}",
+          "expr": "container_memory_rss{name=\"primes-native-g1\",}",
           "hide": false,
           "interval": "",
           "legendFormat": "Memory / Native Image",
           "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "container_memory_rss{name=\"primes-native-opt\",}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Memory / Native Image PGO",
+          "refId": "C"
         },
         {
           "exemplar": true,
@@ -87,7 +95,7 @@
           "refId": "A"
         }
       ],
-      "title": "Memory Usage (RSS)",
+      "title": "Memory Usage (RSS) - Lower is Better",
       "type": "gauge"
     },
     {
@@ -117,8 +125,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 12,
-        "x": 12,
+        "w": 7,
+        "x": 17,
         "y": 0
       },
       "id": 4,
@@ -153,7 +161,7 @@
           "refId": "openjdk"
         }
       ],
-      "title": "Start-up Time",
+      "title": "Start-up Time - Lower is Better",
       "type": "gauge"
     },
     {
@@ -193,6 +201,7 @@
             }
           },
           "mappings": [],
+          "min": 1500,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -240,7 +249,7 @@
           "expr": "rate(http_server_requests_seconds_count{job=\"primes.native-opt\", status=\"200\", uri=\"/primes\"}[$__interval])",
           "hide": false,
           "interval": "",
-          "legendFormat": "Native Image  (req / s)",
+          "legendFormat": "Native Image PGO  (req / s)",
           "refId": "Native Image"
         },
         {
@@ -250,9 +259,17 @@
           "interval": "",
           "legendFormat": "Native Image G1 (req / s)",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.graalee\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "GraalVM EE (req / s)",
+          "refId": "B"
         }
       ],
-      "title": "Throughput",
+      "title": "Throughput - Higher is Better",
       "type": "timeseries"
     }
   ],
@@ -271,5 +288,5 @@
   "timezone": "",
   "title": "Service Level / Customer Portfolio Dashboard",
   "uid": "Z5_uBcp7k",
-  "version": 7
+  "version": 9
 }

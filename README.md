@@ -109,5 +109,3 @@ Additionally, panels can be assembled in rows. Each row of graphs can be expande
 ![](images/mocha-dashboard-4.png)
 
 To learn more about Grafana, see the docs [here](https://grafana.com/docs/).
-
-If you are curious about the compute instance configuration, see **Compute Instance Configuration** document [here](ComputeConfiguration.md).

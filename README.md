@@ -1,25 +1,11 @@
 
 # Java Performance Comparison Dashboard Demo
 
-### OCI Demo Instances
-
 The goal of this demo is to compare performance of Java applications running in a virtual environment or deployed in containers.  
-
-There are two Oracle Linux 7.9 instances running in OCI, each with 2 CPUs (4 cores) and 32GB of RAM.  
-
-* `graal-demo-01: 132.145.18.207`
-* `graal-demo-02: 132.145.21.88`
-
-One instance (`graal-demo-01`) is using the **OpenJDK 17** runtime and the other instance (`graal-demo-02`) is using the **GraalVM EE 21.3.0 (JDK17)** runtime.
 
 To access the systems:
 ```
-$ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@132.145.18.207
-```
-or
-
-```
-$ ssh -i ~username/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
+$ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@129.146.21.243
 ```
 
 > **NOTE:** You'll need to obtain the necessary key files to access the systems.
@@ -29,73 +15,41 @@ $ ssh -i ~username/.ssh/ssh-key-graal-demo-2.key opc@132.145.21.88
 A simple `primes` demo is provided (on both nodes) but other applications can be added.
 
 > **NOTE:** 
-> The `primes` demo has been compiled using Java 17.  Make certain you're using Java 17 (SDKMAN has been installed for your convenience). On **Node 1**, **OpenJDK 17** is installed, on **Node 2**, **GraalVM 21.3.0** (JDK 17) is installed.
->```
-> $ sdk current
->
-> Using:
->
-> gradle: 7.2
-> java: 17.0.1-open  # <- On node 2: java: 21.3.0-17-ee
-> maven: 3.8.3
-> micronaut: 3.1.3
->
-> $ java -version
-> openjdk version "17.0.1" 2021-10-19
-> OpenJDK Runtime Environment (build 17.0.1+12-39)
-> OpenJDK 64-Bit Server VM (build 17.0.1+12-39, mixed mode, sharing)
->```
+> The `primes` demo has been compiled using Java 17, make certain you're using Java 17.
 
-#### Starting the Standalone Version
-To start the primes demo (on either host):
+
+#### Starting the Demo Environment
+
+First, clone this repository:
 
 ```
-$ cd demo/primes-demo
+$ git clone https://github.com/swseighman/Java-Perf-Gafana.git
+$ cd /home/opc/repos/Java-Perf-Gafana/demo
 ```
 
-Node 1:
-```
-$ java -jar target/prime-0.0.1-SNAPSHOT.jar
-```
+Run `docker-compose` to start all of the services:
 
-Node 2:
 ```
-$ java -jar target/prime-0.0.1-SNAPSHOT-exec.jar
-```
-
-#### Starting the Container Version
-
-To start the `primes` demo container on Node 1, execute:
-```
-$ docker run --rm --name primes-jdk -p 8080:8080 primes:jdk
-```
-To start the `primes` demo container on Node 2, execute:
-```
-$ docker run --rm --name primes-native -p 8080:8080 primes:native
-```
-For the Optimized JIT version on Node 2, execute:
-```
-$ docker run --rm --name primes-jit -p 8080:8080 primes:jit
+$ docker-compose up
 ```
 
 The `primes` demo produces data via `spring-actuator` (see source code) and is consumed by Prometheus. The app runs on port **8080**. Once started, you should begin to see data in the Grafana dashboard.
 
-In addition, `hey` has been installed so that you can run benchmark tests. For example:
+In addition, `hey` has been installed so that you can run benchmark tests. A script has been provided to start the benchmark tests: 
 
-Node 1:
 ```
-$ hey -n 1000000 --cpus=1 http://132.145.18.207:8080/primes?upperBound=200
-```
-Node 2:
-```
-$ hey -n 1000000 --cpus=1 http://132.145.21.88:8080/primes?upperBound=200
+$ ./stress.sh
 ```
 
- 
- 
+To stop all of the services execute:
+
+```
+$ docker-compose stop
+```
+
 ### Accessing the Prometheus Dashboard
 
-You can access the Prometheus dashboard by browsing to: http://132.145.18.207:9090/ (Node 1) or http://132.145.21.88:9090/ (Node 2).
+You can access the Prometheus dashboard by browsing to: http://129.146.21.243:9090/
 
 ![](images/dashboard-8.png)
 
@@ -103,7 +57,7 @@ From here, you can execute queries and create graphs.  For example, you can begi
 
 ![](images/dashboard-11.png)
 
-You can also view which targets are available to provide metrics, from the Prometheus dashboard (http://132.145.18.207:9090/), click on **Status-> Targets**
+You can also view which targets are available to provide metrics, from the Prometheus dashboard (http://129.146.21.243:9090/), click on **Status-> Targets**
 
 ![](images/dashboard-9.png)
 
@@ -117,40 +71,42 @@ To learn more about Prometheus, see the docs [here](https://prometheus.io/docs/i
 
 ### Accessing the Grafana Dashboard
 
-To access the Grafana dashboard, browse to: http://132.145.18.207:3000/login
+To access the Grafana dashboard, browse to: http://129.146.21.243:3000/login
 
-![](images/dashboard-5.png)
+![](//wsl$/Fedora34/home/sseighma/code/graalvm/java-perf/Java-Perf-Gafana/images/mocha-dashboard-6.png)
 
 Credentials:
 
 **Login:** admin
 
-**Password:** Gr@@lVM!
+**Password:** admin
 
-By default, the **Overall Dashboard** will be displayed which includes a collection of metrics scraped from:
+You can **Skip** chaning the admin password:
+
+![](images/mocha-dashboard-5.png)
+
+By default, the **Mocha Optimization and High Performance** dashboard will be displayed which includes a collection of metrics scraped from:
 
 * Prometheus
 * Node (system metrics)
 * Cadvisor (containers)
 * Spring-actuator (demo app)
 
-![](images/dashboard-1.png)
+![](images/mocha-dashboard-1.png)
 
 Each metric displayed in the dashboard is considered a **panel**. All of the dashboard panels are customizable. 
 
 For example, if you place your mouse over the top of the **CPUs** panel, an arrow will appear, clicking on the arrow will reveal a menu.  In that menu, choose **Edit**:
 
-![](images/dashboard-12.png)
-
-![](images/dashboard-13.png)
+![](images/mocha-dashboard-2.png)
 
 Choose your **data source**, enter a query in the **Metrics Browser** box, choose your **graph type** and click **Apply**.
 
-![](images/dashboard-14.png)
+![](images/mocha-dashboard-3.png)
 
 Additionally, panels can be assembled in rows. Each row of graphs can be expanded/collapsed by clicking on the arrows for the corresponding rows:
 
-![](images/dashboard-10.png)
+![](images/mocha-dashboard-4.png)
 
 To learn more about Grafana, see the docs [here](https://grafana.com/docs/).
 

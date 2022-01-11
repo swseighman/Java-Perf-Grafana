@@ -3,7 +3,7 @@
 
 The goal of this demo is to compare performance of Java applications running in a virtual environment or deployed in containers.  
 
-To access the systems:
+To access the system:
 ```
 $ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@129.146.21.243
 ```
@@ -12,10 +12,14 @@ $ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@129.146.21.243
 
 ### Starting the Demo Environment
 
-First, clone this repository:
+If the repository hasn't already been cloned, you can access it here:
 
 ```
 $ git clone https://github.com/swseighman/Java-Perf-Gafana.git
+```
+
+Change to the demo directory:
+```
 $ cd /home/opc/repos/Java-Perf-Gafana/demo
 ```
 
@@ -27,7 +31,7 @@ $ docker-compose up
 
 ### Demo Apps
 
-A simple `primes` demo is provided (on both nodes) but other applications can be added.
+A simple `primes` demo has been provided but other applications can be added.
 
 > **NOTE:** 
 > The `primes` demo has been compiled using Java 17, make certain you're using Java 17.
@@ -48,31 +52,9 @@ To stop all of the services execute:
 $ docker-compose stop
 ```
 
-### Accessing the Prometheus Dashboard
-
-You can access the Prometheus dashboard by browsing to: http://129.146.21.243:9090/
-
-![](images/dashboard-8.png)
-
-From here, you can execute queries and create graphs.  For example, you can begin typing `node_memory` in the search bar and Prometheus will display the available query options. Enter your query and press the **Execute** button.  In the example below, we're displaying the amount of free memory on the node (`node_memory_MemFree_bytes`):
-
-![](images/dashboard-11.png)
-
-You can also view which targets are available to provide metrics, from the Prometheus dashboard (http://129.146.21.243:9090/), click on **Status-> Targets**
-
-![](images/dashboard-9.png)
-
-You will see which targets are up and available:
-
-![](images/dashboard-7.png)
-
-> **NOTE:** The `spring-actuator` target will show an `UP` state when a demo application is running (otherwise it will show `Down`).
-
-To learn more about Prometheus, see the docs [here](https://prometheus.io/docs/introduction/overview/).
-
 ### Accessing the Grafana Dashboard
 
-To access the Grafana dashboard, browse to: http://129.146.21.243:3000/login
+To access the Grafana dashboard (with application data), browse to: http://129.146.21.243:3000/login
 
 ![](images/mocha-dashboard-6.png)
 
@@ -82,7 +64,7 @@ Credentials:
 
 **Password:** admin
 
-You can **Skip** chaning the admin password:
+You can **Skip** changing the admin password:
 
 ![](images/mocha-dashboard-5.png)
 
@@ -93,20 +75,10 @@ By default, the **Mocha Optimization and High Performance** dashboard will be di
 * Cadvisor (containers)
 * Spring-actuator (demo app)
 
+This first graph represents memory utilization, the second reflects application startup time. The far-right graphs show the percentage improve of resources (memory) and startup time.
+
+The OpenJDK graph on the left represents an optimized application while native image (on the right) represents the high-performant AOT application.
+
+The last graph displays a comparison of application throughput.
+
 ![](images/mocha-dashboard-1.png)
-
-Each metric displayed in the dashboard is considered a **panel**. All of the dashboard panels are customizable. 
-
-For example, if you place your mouse over the top of the **CPUs** panel, an arrow will appear, clicking on the arrow will reveal a menu.  In that menu, choose **Edit**:
-
-![](images/mocha-dashboard-2.png)
-
-Choose your **data source**, enter a query in the **Metrics Browser** box, choose your **graph type** and click **Apply**.
-
-![](images/mocha-dashboard-3.png)
-
-Additionally, panels can be assembled in rows. Each row of graphs can be expanded/collapsed by clicking on the arrows for the corresponding rows:
-
-![](images/mocha-dashboard-4.png)
-
-To learn more about Grafana, see the docs [here](https://grafana.com/docs/).

@@ -10,14 +10,6 @@ $ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@129.146.21.243
 
 > **NOTE:** You'll need to obtain the necessary key files to access the systems.
 
-### Demo Apps
-
-A simple `primes` demo is provided (on both nodes) but other applications can be added.
-
-> **NOTE:** 
-> The `primes` demo has been compiled using Java 17, make certain you're using Java 17.
-
-
 ### Starting the Demo Environment
 
 First, clone this repository:
@@ -33,9 +25,18 @@ Run `docker-compose` to start all of the services:
 $ docker-compose up
 ```
 
+### Demo Apps
+
+A simple `primes` demo is provided (on both nodes) but other applications can be added.
+
+> **NOTE:** 
+> The `primes` demo has been compiled using Java 17, make certain you're using Java 17.
+
 The `primes` demo produces data via `spring-actuator` (see source code) and is consumed by Prometheus. The app runs on port **8080**. Once started, you should begin to see data in the Grafana dashboard.
 
-In addition, `hey` has been installed so that you can run benchmark tests. A script has been provided to start the benchmark tests: 
+### Running Benchmarks
+
+To help generate real-time data, `hey` has been installed so that you can run benchmark tests. A script has been provided to start the benchmark tests: 
 
 ```
 $ ./stress.sh

@@ -18,7 +18,7 @@ A simple `primes` demo is provided (on both nodes) but other applications can be
 > The `primes` demo has been compiled using Java 17, make certain you're using Java 17.
 
 
-#### Starting the Demo Environment
+### Starting the Demo Environment
 
 First, clone this repository:
 

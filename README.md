@@ -73,7 +73,7 @@ To learn more about Prometheus, see the docs [here](https://prometheus.io/docs/i
 
 To access the Grafana dashboard, browse to: http://129.146.21.243:3000/login
 
-![](//wsl$/Fedora34/home/sseighma/code/graalvm/java-perf/Java-Perf-Gafana/images/mocha-dashboard-6.png)
+![](images/mocha-dashboard-6.png)
 
 Credentials:
 

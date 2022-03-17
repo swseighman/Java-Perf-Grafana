@@ -109,8 +109,8 @@ services:
 #    expose:
 #      - 9100
   # Prometheus
-    prom:
-   image: prom/prometheus
+  prom:
+    image: prom/prometheus
     container_name: prometheus
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
@@ -126,7 +126,7 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
-      depends_on:
+    depends_on:
      - prom
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
@@ -134,7 +134,7 @@ services:
     ports:
       - "3000:3000"
   ## CAdvisor
-   cadvisor:
+  cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.42.0
     container_name: cadvisor
     privileged: true

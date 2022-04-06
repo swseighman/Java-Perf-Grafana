@@ -7,6 +7,8 @@ The goal of this demo is to compare performance of Java applications running in 
 
 The following demonstration requires OpenJDK (17), GraalVM (17) and the native image module.
 
+Recommended compute instance would include 8 cores and 64GB of memory.
+
 To access the system:
 ```
 $ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@129.146.21.243

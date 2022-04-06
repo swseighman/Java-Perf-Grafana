@@ -1,4 +1,4 @@
-FROM container-registry.oracle.com/os/oraclelinux:7
+FROM container-registry.oracle.com/os/oraclelinux:8
 
 RUN yum -y install wget unzip zip findutils tar
 

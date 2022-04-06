@@ -3,6 +3,10 @@
 
 The goal of this demo is to compare performance of Java applications running in a virtual environment or deployed in containers.  
 
+### Prerequisites
+
+The following demonstration requires OpenJDK (17), GraalVM (17) and the native image module.
+
 To access the system:
 ```
 $ ssh -i ~username/.ssh/ssh-key-graal-demo-1.key opc@129.146.21.243
@@ -22,6 +26,13 @@ Change to the demo directory:
 ```
 $ cd /home/opc/repos/Java-Perf-Gafana/demo
 ```
+
+Build all of the packages and containers:
+
+```
+$ ./build.sh
+```
+
 
 Run `docker-compose` to start all of the services:
 
@@ -68,7 +79,7 @@ You can **Skip** changing the admin password:
 
 ![](images/mocha-dashboard-5.png)
 
-By default, the **Mocha Optimization and High Performance** dashboard will be displayed which includes a collection of metrics scraped from:
+By default, the **Optimization and High Performance** dashboard will be displayed which includes a collection of metrics scraped from:
 
 * Prometheus
 * Node (system metrics)

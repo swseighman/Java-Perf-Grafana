@@ -1,4 +1,4 @@
-FROM container-registry.oracle.com/graalvm/enterprise:21.3.0
+FROM container-registry.oracle.com/graalvm/enterprise:latest
 
 EXPOSE 8080
 

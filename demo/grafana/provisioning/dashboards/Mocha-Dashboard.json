@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 9,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -392,11 +392,19 @@
         },
         {
           "exemplar": true,
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.native-opt\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Native Image EE (req / s)",
+          "refId": "Native Image EE PGO"
+        },
+        {
+          "exemplar": true,
           "expr": "rate(http_server_requests_seconds_count{job=\"primes.graalee\", status=\"200\", uri=\"/primes\"}[$__interval])",
           "hide": false,
           "interval": "",
           "legendFormat": "GraalVM EE (req / s)",
-          "refId": "B"
+          "refId": "GraalVM EE"
         }
       ],
       "timeFrom": null,
@@ -419,6 +427,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Optimization & High Performance - Global Bank Application",
-  "uid": "Z5_uBcp7k",
+  "uid": "Z5_uBcp7k1",
   "version": 128
 }

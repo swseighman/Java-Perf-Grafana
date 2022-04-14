@@ -10,11 +10,11 @@ services:
   primes-openjdk:
     image: localhost/primes:openjdk.0.1
     restart: always
-    mem_limit: 1024m
-    memswap_limit: 1024m
-    cpu_count: 2
+    mem_limit: 2048m
+    memswap_limit: 2048m
+    cpu_count: 4
     cpu_percent: 100
-    cpus: 2
+    cpus: 4
     container_name: primes-openjdk
     depends_on:
       - "prom"
@@ -23,11 +23,11 @@ services:
   primes-graalee:
     image: localhost/primes:graalee.0.1
     restart: always
-    mem_limit: 1024m
-    memswap_limit: 1024m
-    cpu_count: 2
+    mem_limit: 2048m
+    memswap_limit: 2048m
+    cpu_count: 4
     cpu_percent: 100
-    cpus: 2
+    cpus: 4
     container_name: primes-graalee
     depends_on:
       - "prom"
@@ -49,11 +49,11 @@ services:
   primes-native-g1:
     image: localhost/primes:nativeg1.0.1
     restart: always
-    mem_limit: 128m
-    memswap_limit: 128m
-    cpu_count: 2
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpu_count: 4
     cpu_percent: 100
-    cpus: 2
+    cpus: 4
     container_name: primes-native-g1
     depends_on:
       - "prom"
@@ -80,11 +80,11 @@ services:
   primes-native-opt:
     image: localhost/primes:nativeopt.0.1
     restart: always
-    mem_limit: 256m
-    memswap_limit: 256m
-    cpu_count: 2
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpu_count: 4
     cpu_percent: 100
-    cpus: 2
+    cpus: 4
     container_name: primes-native-opt
     depends_on:
       - "prom"
@@ -124,7 +124,7 @@ services:
       - "9090:9090"
   # Grafana
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana-oss
     container_name: grafana
     depends_on:
      - prom
@@ -134,6 +134,7 @@ services:
       - grafana_data:/var/lib/grafana
     ports:
       - "3000:3000"
+    user: '104'
   ## CAdvisor
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.42.0
@@ -155,21 +156,21 @@ services:
   # Stress Test Infra
   stress-openjdk:
     image: ricoli/hey
-    command: -z 20m http://primes-openjdk:8080/primes?upperBound=9999
+    command: -z 60m http://primes-openjdk:8080/primes?upperBound=9999
     depends_on:
       - "primes-openjdk"
   stress-graalee:
     image: ricoli/hey
-    command: -z 20m http://primes-graalee:8080/primes?upperBound=9999
+    command: -z 60m http://primes-graalee:8080/primes?upperBound=9999
     depends_on:
       - "primes-graalee"
   stress-native-g1:
     image: ricoli/hey
-    command: -z 20m http://primes-native-g1:8080/primes?upperBound=9999
+    command: -z 60m http://primes-native-g1:8080/primes?upperBound=9999
     depends_on:
       - "primes-native-g1"
   stress-native-opt:
     image: ricoli/hey
-    command: -z 20m http://primes-native-opt:8080/primes?upperBound=9999
+    command: -z 60m http://primes-native-opt:8080/primes?upperBound=9999
     depends_on:
       - "primes-native-opt"

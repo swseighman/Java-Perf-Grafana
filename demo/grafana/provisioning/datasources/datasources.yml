@@ -6,9 +6,3 @@ datasources:
   user:
   allowUiUpdates: true
   isDefault: true
-
-# - name: Prometheus-2
-#   access: direct
-#   type: prometheus
-#   url: http://132.145.21.88:9090
-#   isDefault: false

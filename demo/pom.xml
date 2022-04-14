@@ -5,7 +5,7 @@
 	<parent>
 	   <groupId>org.springframework.boot</groupId>
 	   <artifactId>spring-boot-starter-parent</artifactId>
-	   <version>2.6.0-SNAPSHOT</version>
+	   <version>2.6.5</version>
 	   <relativePath/>
 	</parent>
 	<groupId>com.example</groupId>
@@ -14,10 +14,10 @@
 	<name>primes-demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<repackage.classifier/>
-		<spring-native.version>0.11.0-SNAPSHOT</spring-native.version>
-		<native-buildtools.version>0.9.7.1</native-buildtools.version>
+		<spring-native.version>0.11.2</spring-native.version>
+		<native-buildtools.version>0.9.11</native-buildtools.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -52,6 +52,28 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/release</url>
+            <snapshots>
+            <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/release</url>
+            <snapshots>
+            <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 	<build>
 		<plugins>
@@ -89,47 +111,12 @@
 			</plugin>
 		</plugins>
 	</build>
-<repositories>
-    <repository>
-        <id>spring-snapshots</id>
-        <url>https://repo.spring.io/snapshot</url>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
-    <repository>
-        <id>spring-milestones</id>
-        <url>https://repo.spring.io/milestone</url>
-    </repository>
-</repositories>
-
-<pluginRepositories>
-    <pluginRepository>
-        <id>spring-snapshots</id>
-        <url>https://repo.spring.io/snapshot</url>
-    </pluginRepository>
-    <pluginRepository>
-        <id>spring-milestones</id>
-        <url>https://repo.spring.io/milestone</url>
-    </pluginRepository>
-	<!-- <pluginRepository>
-        <id>graalvm-native-build-tools-snapshots</id>
-        <name>GraalVM native-build-tools Snapshots</name>
-        <url>https://raw.githubusercontent.com/graalvm/native-build-tools/snapshots</url>
-        <releases>
-            <enabled>false</enabled>
-        </releases>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </pluginRepository> -->
-</pluginRepositories>
 	<profiles>
 		<profile>
 			<id>native</id>
 			<properties>
 				<repackage.classifier>exec</repackage.classifier>
-				<native-buildtools.version>0.9.7.1</native-buildtools.version>
+				<native-buildtools.version>0.9.11</native-buildtools.version>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -169,7 +156,7 @@
 			<id>native-g1</id>
 			<properties>
 				<repackage.classifier>exec</repackage.classifier>
-				<native-buildtools.version>0.9.7.1</native-buildtools.version>
+				<native-buildtools.version>0.9.11</native-buildtools.version>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -217,7 +204,7 @@
 			<id>native-inst</id>
 			<properties>
 				<repackage.classifier>exec</repackage.classifier>
-				<native-buildtools.version>0.9.7.1</native-buildtools.version>
+				<native-buildtools.version>0.9.11</native-buildtools.version>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -268,7 +255,7 @@
 			<id>native-opt</id>
 			<properties>
 				<repackage.classifier>exec</repackage.classifier>
-				<native-buildtools.version>0.9.7.1</native-buildtools.version>
+				<native-buildtools.version>0.9.11</native-buildtools.version>
 			</properties>
 			<dependencies>
 				<dependency>

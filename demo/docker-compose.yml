@@ -1,8 +1,8 @@
 version: '2.4'
 
 volumes:
-    prometheus_data:
-    grafana_data:
+  prometheus_data:
+  grafana_data:
 
 services:
 
@@ -33,19 +33,19 @@ services:
       - "prom"
     ports:
       - "8086:8080"
-#  primes-native:
-#    image: localhost/primes:native.0.1
-#    restart: always
-#    mem_limit: 256m
-#    memswap_limit: 256m
-#    cpu_count: 2
-#    cpu_percent: 100
-#    cpus: 2
-#    container_name: primes-native
-#    depends_on:
-#      - "prom"
-#    ports:
-#      - "8087:8080"
+  primes-native:
+   image: localhost/primes:native.0.1
+   restart: always
+   mem_limit: 256m
+   memswap_limit: 256m
+   cpu_count: 2
+   cpu_percent: 100
+   cpus: 2
+   container_name: primes-native
+   depends_on:
+     - "prom"
+   ports:
+     - "8087:8080"
   primes-native-g1:
     image: localhost/primes:nativeg1.0.1
     restart: always

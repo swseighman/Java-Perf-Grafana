@@ -1,4 +1,4 @@
-FROM container-registry.oracle.com/os/oraclelinux:7-slim
+FROM container-registry.oracle.com/os/oraclelinux:8-slim
 
 ARG APP_FILE
 EXPOSE 8080

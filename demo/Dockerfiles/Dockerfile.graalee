@@ -3,4 +3,8 @@ FROM container-registry.oracle.com/graalvm/enterprise:latest
 EXPOSE 8080
 
 COPY target/prime-0.0.1-SNAPSHOT-exec.jar prime-0.0.1-SNAPSHOT.jar
+
+# For MacOS
+#COPY target/prime-0.0.1-SNAPSHOT.jar prime-0.0.1-SNAPSHOT.jar
+
 CMD ["java","-jar","prime-0.0.1-SNAPSHOT.jar"]

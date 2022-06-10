@@ -108,9 +108,16 @@ If the repository hasn't already been cloned, you can access it here:
 $ git clone https://github.com/swseighman/Java-Perf-Gafana.git
 ```
 
+It's recommended you login to [container-registry.oracle.com](container-registry.oracle.com) using your Oracle credentials before executing the `build.sh` script:
+
+```
+docker login container-registry.oracle.com
+```
+
+
 #### Build the Project
 ```
-sdk use java 22.1.0.1-17-ee
+sdk use java 22.1.0.1-17-ee  <-- SDKMAN command or set JAVA_HOME
 cd Java-Perf-Gafana/demo
 ./build.sh
 ```
@@ -154,9 +161,9 @@ ef61cf13fc28   localhost/primes:native.0.1        "/prime"                 23 mi
 48bfbc5b56c6   gcr.io/cadvisor/cadvisor:v0.42.0   "/usr/bin/cadvisor -…"   23 minutes ago   Up 23 minutes (healthy)   0.0.0.0:9099->8080/tcp, :::9099->8080/tcp   cadvisor
 ```
 
-> **NOTE:** If you're using MacOS, the build of the images using G1GC (`nativeopt`, `nativeg1`, `native-inst`) will fail because G1 is only supported on Linux/x64. You'll need to comment out those options in the `build.sh` script and `docker-compose.yml` file.
+> **NOTE:** If you're using MacOS, the build of the images using G1GC (`nativeopt`, `nativeg1`, `native-inst`) will fail because G1 is only supported on Linux/x64. 
 >
->In addition, while the native image build will succeed, the container will fail to start due to binary incompatibility.  Use the `Dockerfile.stage` file to build a native image version.
+>In addition, while the native image build will succeed, the container will fail to start due to binary incompatibility.  Use the `build-macos.sh` script to build the native image containers then execute `docker-compose up`.
 
 ### Demo Apps
 

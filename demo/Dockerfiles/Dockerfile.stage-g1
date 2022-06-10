@@ -11,7 +11,7 @@ RUN \
     source "$HOME/.sdkman/bin/sdkman-init.sh"; \
     # Install Maven
     sdk install maven; \
-    mvn package -Pnative -DskipTests
+    mvn package -Pnative-g1 -DskipTests
     # # Install Gradle
     # sdk install gradle; \
     # gradle nativeCompile
@@ -24,7 +24,3 @@ EXPOSE 8080
 COPY --from=graalvm /home/app/primes/target/${APP_FILE} prime
 
 ENTRYPOINT ["/prime"]
-
-# Build and run:
-# docker build -f ./Dockerfile.stage -t localhost/rest-service-demo:stage .
-# docker run --rm -p 8080:8080 localhost/rest-service-demo:stage

@@ -190,7 +190,7 @@ $ docker-compose stop
 
 ### Accessing the Grafana Dashboard
 
-To access the Grafana dashboard (with application data), browse to: http://*your-instance-ip*/login
+To access the Grafana dashboard (with application data), browse to: http://*your-instance-ip*:3000/login
 
 ![](images/mocha-dashboard-6.png)
 

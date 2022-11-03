@@ -105,7 +105,7 @@ Now add an **Egress Rule** for Grafana access by clicking on the **Add Egress Ru
 If the repository hasn't already been cloned, you can access it here:
 
 ```
-$ git clone https://github.com/swseighman/Java-Perf-Gafana.git
+$ git clone https://github.com/swseighman/Java-Perf-Grafana.git
 ```
 
 It's recommended you login to [container-registry.oracle.com](container-registry.oracle.com) using your Oracle credentials before executing the `build.sh` script:
@@ -118,7 +118,7 @@ docker login container-registry.oracle.com
 #### Build the Project
 ```
 sdk use java 22.1.0.1-17-ee  <-- SDKMAN command or set JAVA_HOME
-cd Java-Perf-Gafana/demo
+cd Java-Perf-Grafana/demo
 ./build.sh
 ```
 
